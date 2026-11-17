@@ -10,6 +10,7 @@ import Materials from "./pages/inventory/Materials";
 import MaterialCategories from "./pages/inventory/MaterialCategories";
 import StockMovements from "./pages/inventory/StockMovements";
 import Maintenance from "./pages/inventory/Maintenance";
+import Bookings from "./pages/bookings/Bookings";
 
 
 
@@ -83,6 +84,17 @@ function AppRoutes() {
     <ProtectedRoute>
       <DashboardLayout>
         <Maintenance />
+      </DashboardLayout>
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/bookings"
+  element={
+    <ProtectedRoute>
+      <DashboardLayout>
+        <Bookings />
       </DashboardLayout>
     </ProtectedRoute>
   }
