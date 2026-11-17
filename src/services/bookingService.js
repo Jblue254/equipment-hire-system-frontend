@@ -20,12 +20,7 @@ export const updateBooking = async (id, data) => {
   return response.data;
 };
 
-export const approveBooking = async (id) => {
-  const response = await api.post(`/bookings/${id}/approve/`);
-  return response.data;
-};
-
-export const rejectBooking = async (id, data = {}) => {
-  const response = await api.post(`/bookings/${id}/reject/`, data);
+export const decideBooking = async (id, data) => {
+  const response = await api.post(`/bookings/${id}/decision/`, data);
   return response.data;
 };
