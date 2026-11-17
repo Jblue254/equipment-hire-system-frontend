@@ -15,12 +15,25 @@ export const getBooking = async (id) => {
   return response.data;
 };
 
-export const updateBooking = async (id, data) => {
-  const response = await api.patch(`/bookings/${id}/`, data);
+export const decideBooking = async (id, data) => {
+  const response = await api.post(`/bookings/${id}/decision/`, data);
   return response.data;
 };
 
-export const decideBooking = async (id, data) => {
-  const response = await api.post(`/bookings/${id}/decision/`, data);
+export const dispatchBooking = async (id, data = {}) => {
+  const response = await api.post(`/bookings/${id}/dispatch/`, data);
+  return response.data;
+};
+
+export const getCreditApprovals = async (params = {}) => {
+  const response = await api.get("/bookings/credit-approvals/", { params });
+  return response.data;
+};
+
+export const decideCreditApproval = async (id, data) => {
+  const response = await api.post(
+    `/bookings/credit-approvals/${id}/decision/`,
+    data
+  );
   return response.data;
 };
