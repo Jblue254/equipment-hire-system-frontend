@@ -5,6 +5,8 @@ import ProtectedRoute from './components/ProtectedRoute'
 import DashboardLayout from './components/layout/DashboardLayout'
 import Dashboard from './pages/dashboard/Dashboard'
 import Login from './pages/auth/Login'
+import Equipment from "./pages/inventory/Equipment";
+import Materials from "./pages/inventory/Materials";
 
 function AppRoutes() {
   const { user } = useAuth()
@@ -13,11 +15,7 @@ function AppRoutes() {
     <Routes>
       <Route
         path="/login"
-        element={
-          user
-            ? <Navigate to="/" replace />
-            : <Login />
-        }
+        element={user ? <Navigate to="/" replace /> : <Login />}
       />
 
       <Route
@@ -31,11 +29,31 @@ function AppRoutes() {
         }
       />
 
+      <Route
+        path="/inventory"
+        element={
+          <ProtectedRoute>
+            <DashboardLayout>
+              <Equipment />
+            </DashboardLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+  path="/materials"
+  element={
+    <ProtectedRoute>
+      <DashboardLayout>
+        <Materials />
+      </DashboardLayout>
+    </ProtectedRoute>
+  }
+/>
+
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
 }
-
 function App() {
   return (
     <BrowserRouter>
