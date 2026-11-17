@@ -7,6 +7,8 @@ import Dashboard from './pages/dashboard/Dashboard'
 import Login from './pages/auth/Login'
 import Equipment from "./pages/inventory/Equipment";
 import Materials from "./pages/inventory/Materials";
+import MaterialCategories from "./pages/inventory/MaterialCategories";
+import StockMovements from "./pages/inventory/StockMovements";
 
 function AppRoutes() {
   const { user } = useAuth()
@@ -45,6 +47,28 @@ function AppRoutes() {
     <ProtectedRoute>
       <DashboardLayout>
         <Materials />
+      </DashboardLayout>
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/material-categories"
+  element={
+    <ProtectedRoute>
+      <DashboardLayout>
+        <MaterialCategories />
+      </DashboardLayout>
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/stock-movements"
+  element={
+    <ProtectedRoute>
+      <DashboardLayout>
+        <StockMovements />
       </DashboardLayout>
     </ProtectedRoute>
   }

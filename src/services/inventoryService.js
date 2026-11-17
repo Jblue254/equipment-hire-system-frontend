@@ -65,3 +65,53 @@ export const createMaterialCategory = async (data) => {
   const response = await api.post("/inventory/material-categories/", data);
   return response.data;
 };
+export const updateMaterialCategory = async (id, data) => {
+  const response = await api.patch(
+    `/inventory/material-categories/${id}/`,
+    data
+  );
+  return response.data;
+};
+
+export const deleteMaterialCategory = async (id) => {
+  const response = await api.delete(
+    `/inventory/material-categories/${id}/`
+  );
+  return response.data;
+};
+// STOCK MOVEMENTS
+
+export const getStockMovements = async (params = {}) => {
+  const response = await api.get("/inventory/stock-movements/", {
+    params,
+  });
+  return response.data;
+};
+
+export const createStockMovement = async (data) => {
+  const response = await api.post(
+    "/inventory/stock-movements/",
+    data
+  );
+  return response.data;
+};
+
+export const getMaintenanceRecords = async (params = {}) => {
+  const response = await api.get("/inventory/maintenance/", { params });
+  return response.data;
+};
+
+export const createMaintenanceRecord = async (data) => {
+  const response = await api.post("/inventory/maintenance/", data);
+  return response.data;
+};
+
+export const updateMaintenanceRecord = async (id, data) => {
+  const response = await api.patch(`/inventory/maintenance/${id}/`, data);
+  return response.data;
+};
+
+export const getEquipmentUnits = async (params = {}) => {
+  const response = await api.get("/inventory/equipment-units/", { params });
+  return response.data;
+};

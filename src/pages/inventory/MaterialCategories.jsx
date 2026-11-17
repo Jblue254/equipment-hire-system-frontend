@@ -10,10 +10,11 @@ import {
   RefreshCw,
 } from "lucide-react";
 import { toast } from "sonner";
-
 import {
   getMaterialCategories,
   createMaterialCategory,
+  updateMaterialCategory,
+  deleteMaterialCategory,
 } from "../../services/inventoryService";
 
 const initialForm = {
