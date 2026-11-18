@@ -37,3 +37,12 @@ export const decideCreditApproval = async (id, data) => {
   );
   return response.data;
 };
+export const getReturns = async (params = {}) => {
+  const response = await api.get("/bookings/returns/", { params });
+  return response.data;
+};
+
+export const createReturn = async (data) => {
+  const response = await api.post("/bookings/returns/", data);
+  return response.data;
+};
