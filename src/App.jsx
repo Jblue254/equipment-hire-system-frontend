@@ -13,7 +13,7 @@ import Maintenance from "./pages/inventory/Maintenance";
 import Bookings from "./pages/bookings/Bookings";
 import EquipmentCategories from "./pages/inventory/EquipmentCategories";
 import CreditApprovals from "./pages/bookings/CreditApprovals";
-
+import Dispatch from "./pages/bookings/Dispatch";
 
 
 
@@ -114,7 +114,16 @@ function AppRoutes() {
     </ProtectedRoute>
   }
 />
-
+<Route
+  path="/dispatch"
+  element={
+    <ProtectedRoute>
+      <DashboardLayout>
+        <Dispatch />
+      </DashboardLayout>
+    </ProtectedRoute>
+  }
+/>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
