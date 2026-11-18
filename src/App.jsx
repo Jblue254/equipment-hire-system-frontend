@@ -15,6 +15,8 @@ import EquipmentCategories from "./pages/inventory/EquipmentCategories";
 import CreditApprovals from "./pages/bookings/CreditApprovals";
 import Dispatch from "./pages/bookings/Dispatch";
 import Returns from "./pages/bookings/Returns";
+import Sales from "./pages/Sales";
+import Payments from "./pages/Payments";
 
 
 
@@ -24,6 +26,8 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path="/login" element={user ? <Navigate to="/" replace /> : <Login />}/>
+      <Route path="/sales" element={<Sales />} />
+      <Route path="/payments" element={<Payments />} />
       <Route path="/" element={ <ProtectedRoute> <DashboardLayout>
               <Dashboard />
             </DashboardLayout>
