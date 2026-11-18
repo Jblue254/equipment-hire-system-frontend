@@ -34,3 +34,17 @@ export const getSaleBalance = async (saleId) => {
   );
   return response.data;
 };
+export const initiateMpesaPayment = async (data) => {
+  const response = await api.post(
+    "/finance/mpesa/stk-push/",
+    data
+  );
+  return response.data;
+};
+
+export const getPaymentStatus = async (id) => {
+  const response = await api.get(
+    `/finance/payments/${id}/status/`
+  );
+  return response.data;
+};
