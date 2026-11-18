@@ -12,6 +12,7 @@ import StockMovements from "./pages/inventory/StockMovements";
 import Maintenance from "./pages/inventory/Maintenance";
 import Bookings from "./pages/bookings/Bookings";
 import EquipmentCategories from "./pages/inventory/EquipmentCategories";
+import CreditApprovals from "./pages/bookings/CreditApprovals";
 
 
 
@@ -99,6 +100,16 @@ function AppRoutes() {
     <ProtectedRoute>
       <DashboardLayout>
         <EquipmentCategories />
+      </DashboardLayout>
+    </ProtectedRoute>
+  }
+/>
+<Route
+  path="/credit-approvals"
+  element={
+    <ProtectedRoute>
+      <DashboardLayout>
+        <CreditApprovals />
       </DashboardLayout>
     </ProtectedRoute>
   }
