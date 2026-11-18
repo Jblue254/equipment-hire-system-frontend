@@ -11,6 +11,8 @@ import MaterialCategories from "./pages/inventory/MaterialCategories";
 import StockMovements from "./pages/inventory/StockMovements";
 import Maintenance from "./pages/inventory/Maintenance";
 import Bookings from "./pages/bookings/Bookings";
+import EquipmentCategories from "./pages/inventory/EquipmentCategories";
+
 
 
 
@@ -19,16 +21,8 @@ function AppRoutes() {
 
   return (
     <Routes>
-      <Route
-        path="/login"
-        element={user ? <Navigate to="/" replace /> : <Login />}
-      />
-
-      <Route
-        path="/"
-        element={
-          <ProtectedRoute>
-            <DashboardLayout>
+      <Route path="/login" element={user ? <Navigate to="/" replace /> : <Login />}/>
+      <Route path="/" element={ <ProtectedRoute> <DashboardLayout>
               <Dashboard />
             </DashboardLayout>
           </ProtectedRoute>
@@ -95,6 +89,16 @@ function AppRoutes() {
     <ProtectedRoute>
       <DashboardLayout>
         <Bookings />
+      </DashboardLayout>
+    </ProtectedRoute>
+  }
+/>
+<Route
+  path="/equipment-categories"
+  element={
+    <ProtectedRoute>
+      <DashboardLayout>
+        <EquipmentCategories />
       </DashboardLayout>
     </ProtectedRoute>
   }
