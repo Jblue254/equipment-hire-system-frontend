@@ -14,6 +14,7 @@ import Bookings from "./pages/bookings/Bookings";
 import EquipmentCategories from "./pages/inventory/EquipmentCategories";
 import CreditApprovals from "./pages/bookings/CreditApprovals";
 import Dispatch from "./pages/bookings/Dispatch";
+import Returns from "./pages/bookings/Returns";
 
 
 
@@ -120,6 +121,16 @@ function AppRoutes() {
     <ProtectedRoute>
       <DashboardLayout>
         <Dispatch />
+      </DashboardLayout>
+    </ProtectedRoute>
+  }
+/>
+<Route
+  path="/returns"
+  element={
+    <ProtectedRoute>
+      <DashboardLayout>
+        <Returns />
       </DashboardLayout>
     </ProtectedRoute>
   }
