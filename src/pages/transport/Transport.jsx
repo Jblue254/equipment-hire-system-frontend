@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import LorryForm from "./LorryForm";
+import DriverForm from "./DriverForm";
 
 import {
   getLorries,
@@ -91,6 +92,7 @@ export default function Transport() {
   const [refreshing, setRefreshing] = useState(false);
   const [search, setSearch] = useState("");
   const [showLorryForm, setShowLorryForm] = useState(false);
+  const [showDriverForm, setShowDriverForm] = useState(false);
 
   const [lorries, setLorries] = useState([]);
   const [drivers, setDrivers] = useState([]);
@@ -457,9 +459,7 @@ export default function Transport() {
               </p>
             </div>
             <button
-              onClick={() =>
-                toast.info("Driver registration form is the next step.")
-              }
+              onClick={() => setShowDriverForm(true)}
               className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700"
             >
               <Plus size={16} /> Add driver
@@ -671,6 +671,13 @@ export default function Transport() {
       {showLorryForm && (
         <LorryForm
           onClose={() => setShowLorryForm(false)}
+          onSuccess={() => loadData(true)}
+        />
+      )}
+
+      {showDriverForm && (
+        <DriverForm
+          onClose={() => setShowDriverForm(false)}
           onSuccess={() => loadData(true)}
         />
       )}
