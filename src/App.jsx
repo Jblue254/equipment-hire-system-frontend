@@ -1,148 +1,82 @@
 
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { AuthProvider, useAuth } from './context/AuthContext'
-import ProtectedRoute from './components/ProtectedRoute'
-import DashboardLayout from './components/layout/DashboardLayout'
-import Dashboard from './pages/dashboard/Dashboard'
-import Login from './pages/auth/Login'
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { AuthProvider, useAuth } from "./context/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
+import DashboardLayout from "./components/layout/DashboardLayout";
+
+import Dashboard from "./pages/dashboard/Dashboard";
+import Login from "./pages/auth/Login";
+
 import Equipment from "./pages/inventory/Equipment";
 import Materials from "./pages/inventory/Materials";
 import MaterialCategories from "./pages/inventory/MaterialCategories";
 import StockMovements from "./pages/inventory/StockMovements";
 import Maintenance from "./pages/inventory/Maintenance";
-import Bookings from "./pages/bookings/Bookings";
 import EquipmentCategories from "./pages/inventory/EquipmentCategories";
+
+import Bookings from "./pages/bookings/Bookings";
 import CreditApprovals from "./pages/bookings/CreditApprovals";
 import Dispatch from "./pages/bookings/Dispatch";
 import Returns from "./pages/bookings/Returns";
+
 import Sales from "./pages/Sales";
 import Payments from "./pages/Payments";
-
-
+import Transport from "./pages/transport/Transport";
 
 function AppRoutes() {
-  const { user } = useAuth()
+  const { user } = useAuth();
+
+  const protectedPage = (page) => (
+    <ProtectedRoute>
+      <DashboardLayout>{page}</DashboardLayout>
+    </ProtectedRoute>
+  );
 
   return (
     <Routes>
-      <Route path="/login" element={user ? <Navigate to="/" replace /> : <Login />}/>
-      <Route path="/sales" element={<Sales />} />
-      <Route path="/payments" element={<Payments />} />
-      <Route path="/" element={ <ProtectedRoute> <DashboardLayout>
-              <Dashboard />
-            </DashboardLayout>
-          </ProtectedRoute>
-        }
+      <Route
+        path="/login"
+        element={user ? <Navigate to="/" replace /> : <Login />}
       />
 
+      <Route path="/" element={protectedPage(<Dashboard />)} />
+
+      <Route path="/inventory" element={protectedPage(<Equipment />)} />
+      <Route path="/materials" element={protectedPage(<Materials />)} />
       <Route
-        path="/inventory"
-        element={
-          <ProtectedRoute>
-            <DashboardLayout>
-              <Equipment />
-            </DashboardLayout>
-          </ProtectedRoute>
-        }
+        path="/material-categories"
+        element={protectedPage(<MaterialCategories />)}
       />
       <Route
-  path="/materials"
-  element={
-    <ProtectedRoute>
-      <DashboardLayout>
-        <Materials />
-      </DashboardLayout>
-    </ProtectedRoute>
-  }
-/>
+        path="/stock-movements"
+        element={protectedPage(<StockMovements />)}
+      />
+      <Route
+        path="/maintenance"
+        element={protectedPage(<Maintenance />)}
+      />
+      <Route
+        path="/equipment-categories"
+        element={protectedPage(<EquipmentCategories />)}
+      />
 
-<Route
-  path="/material-categories"
-  element={
-    <ProtectedRoute>
-      <DashboardLayout>
-        <MaterialCategories />
-      </DashboardLayout>
-    </ProtectedRoute>
-  }
-/>
+      <Route path="/bookings" element={protectedPage(<Bookings />)} />
+      <Route
+        path="/credit-approvals"
+        element={protectedPage(<CreditApprovals />)}
+      />
+      <Route path="/dispatch" element={protectedPage(<Dispatch />)} />
+      <Route path="/returns" element={protectedPage(<Returns />)} />
 
-<Route
-  path="/stock-movements"
-  element={
-    <ProtectedRoute>
-      <DashboardLayout>
-        <StockMovements />
-      </DashboardLayout>
-    </ProtectedRoute>
-  }
-/>
+      <Route path="/sales" element={protectedPage(<Sales />)} />
+      <Route path="/payments" element={protectedPage(<Payments />)} />
+      <Route path="/transport" element={protectedPage(<Transport />)} />
 
-<Route
-  path="/maintenance"
-  element={
-    <ProtectedRoute>
-      <DashboardLayout>
-        <Maintenance />
-      </DashboardLayout>
-    </ProtectedRoute>
-  }
-/>
-
-<Route
-  path="/bookings"
-  element={
-    <ProtectedRoute>
-      <DashboardLayout>
-        <Bookings />
-      </DashboardLayout>
-    </ProtectedRoute>
-  }
-/>
-<Route
-  path="/equipment-categories"
-  element={
-    <ProtectedRoute>
-      <DashboardLayout>
-        <EquipmentCategories />
-      </DashboardLayout>
-    </ProtectedRoute>
-  }
-/>
-<Route
-  path="/credit-approvals"
-  element={
-    <ProtectedRoute>
-      <DashboardLayout>
-        <CreditApprovals />
-      </DashboardLayout>
-    </ProtectedRoute>
-  }
-/>
-<Route
-  path="/dispatch"
-  element={
-    <ProtectedRoute>
-      <DashboardLayout>
-        <Dispatch />
-      </DashboardLayout>
-    </ProtectedRoute>
-  }
-/>
-<Route
-  path="/returns"
-  element={
-    <ProtectedRoute>
-      <DashboardLayout>
-        <Returns />
-      </DashboardLayout>
-    </ProtectedRoute>
-  }
-/>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
-  )
+  );
 }
+
 function App() {
   return (
     <BrowserRouter>
@@ -150,7 +84,7 @@ function App() {
         <AppRoutes />
       </AuthProvider>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;
