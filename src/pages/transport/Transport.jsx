@@ -16,6 +16,8 @@ import {
 import { toast } from "sonner";
 import LorryForm from "./LorryForm";
 import DriverForm from "./DriverForm";
+import TripForm from "./TripForm";
+import LorryExpenseForm from "./LorryExpenseForm";
 
 import {
   getLorries,
@@ -93,6 +95,8 @@ export default function Transport() {
   const [search, setSearch] = useState("");
   const [showLorryForm, setShowLorryForm] = useState(false);
   const [showDriverForm, setShowDriverForm] = useState(false);
+  const [showTripForm, setShowTripForm] = useState(false);
+  const [showLorryExpenseForm, setShowLorryExpenseForm] = useState(false);
 
   const [lorries, setLorries] = useState([]);
   const [drivers, setDrivers] = useState([]);
@@ -519,9 +523,7 @@ export default function Transport() {
               </p>
             </div>
             <button
-              onClick={() =>
-                toast.info("Trip assignment form is the next step.")
-              }
+              onClick={() => setShowTripForm(true)}
               className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700"
             >
               <Plus size={16} /> Assign trip
@@ -605,16 +607,25 @@ export default function Transport() {
           </div>
 
           <div className="rounded-xl border border-slate-200 bg-white p-5">
-            <div className="flex items-center gap-3">
-              <div className="rounded-lg bg-amber-50 p-2.5 text-amber-600">
-                <Wrench size={20} />
+            <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
+              <div className="flex items-center gap-3">
+                <div className="rounded-lg bg-amber-50 p-2.5 text-amber-600">
+                  <Wrench size={20} />
+                </div>
+                <div>
+                  <h3 className="font-bold text-slate-900">Lorry expenses</h3>
+                  <p className="text-xs text-slate-500">
+                    {lorryExpenses.length} recorded expenses
+                  </p>
+                </div>
               </div>
-              <div>
-                <h3 className="font-bold text-slate-900">Lorry expenses</h3>
-                <p className="text-xs text-slate-500">
-                  {lorryExpenses.length} recorded expenses
-                </p>
-              </div>
+              <button
+                type="button"
+                onClick={() => setShowLorryExpenseForm(true)}
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700"
+              >
+                <Plus size={16} /> Add Lorry Expense
+              </button>
             </div>
             <p className="mt-5 text-2xl font-bold text-slate-900">
               {formatMoney(
@@ -678,6 +689,20 @@ export default function Transport() {
       {showDriverForm && (
         <DriverForm
           onClose={() => setShowDriverForm(false)}
+          onSuccess={() => loadData(true)}
+        />
+      )}
+
+      {showTripForm && (
+        <TripForm
+          onClose={() => setShowTripForm(false)}
+          onSuccess={() => loadData(true)}
+        />
+      )}
+
+      {showLorryExpenseForm && (
+        <LorryExpenseForm
+          onClose={() => setShowLorryExpenseForm(false)}
           onSuccess={() => loadData(true)}
         />
       )}
